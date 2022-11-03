@@ -1,0 +1,56 @@
+FROM nginx:alpine
+
+########## APP CONFIG ###########
+
+ENV SERVER_NAME=localhost
+ENV SERVER_PORT=80
+ENV APP_DB=laravel
+ENV APP_DB_USER=laravel
+ENV APP_DB_PASS=laravel
+ENV DB_HOST=localhost
+ENV BACK_HOST=localhost
+ENV BACK_HOST_PORT=9001
+
+########## APP CONFIG ###########
+###########REPO LINK#############
+
+ENV REPO_LINK=https://github.com/Team-Cloudboost/glue-with-composer-preinstalled.git
+ENV REPO_BRANCH=main
+ENV REPO_PROJECT_FOLDER=.
+
+###########REPO LINK#############
+
+
+
+
+
+COPY ./config/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./Entrypoint/frontend-1-docker-entrypoint.sh /frontend-1-docker-entrypoint.sh
+WORKDIR /public_html
+
+RUN apk add git; \
+    mkdir /public_html; \
+    cd /public_html; \
+    # Git Job start here
+    git init; \
+    git remote add origin $REPO_LINK; \
+    git fetch origin; \
+    git checkout origin/$REPO_BRANCH -- $REPO_PROJECT_FOLDER; \
+    # Add user for NGINX
+    adduser -u 82 -D -S -G www-data www-data; \
+    sed -i "s/user  nginx;/user  www-data;/g" /etc/nginx/nginx.conf; \
+    chown -R www-data:www-data /public_html/$REPO_PROJECT_FOLDER/storage; \
+    chown -R www-data:www-data /public_html/$REPO_PROJECT_FOLDER/bootstrap/cache; 
+
+RUN ["chmod", "+x", "/frontend-1-docker-entrypoint.sh"] 
+
+ENTRYPOINT [ "sh", "/frontend-1-docker-entrypoint.sh" ]
+
+EXPOSE $SERVER_PORT
+
+
+
+
+
+
+    

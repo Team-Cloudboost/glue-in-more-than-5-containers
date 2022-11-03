@@ -1,0 +1,26 @@
+FROM ubuntu
+
+######DATBASE COFIG START##################
+ENV MYSQL_ROOT_PASSWORD=StrongPass
+ENV APP_DB=laravel
+ENV APP_DB_USER=laravel
+ENV APP_DB_PASS=laravel
+
+######DATBASE COFIG END####################
+
+ENV DB_DUMP_FILE_LINK=https://raw.githubusercontent.com/Team-Cloudboost/glue-with-composer-preinstalled/main/bahonbdc_ticket.sql
+
+WORKDIR /glue
+
+ENV TZ=Asia/Dhaka \
+    DEBIAN_FRONTEND=noninteractive
+
+RUN apt update; apt install mysql-server wget ca-certificates -y --no-install-recommends; \
+    sed -i 's,bind-address.*,bind-address = 0.0.0.0,g' /etc/mysql/mysql.conf.d/mysqld.cnf; \
+    wget -O ./glue_dump.sql ${DB_DUMP_FILE_LINK}; 
+     
+    
+
+CMD [ "mysqld"]
+
+EXPOSE 3306

@@ -1,0 +1,61 @@
+FROM ubuntu
+
+########## APP CONFIG ###########
+
+ENV WEB_ADDRESS=localhost
+ENV DB_HOST=localhost
+ENV APP_DB=laravel
+ENV APP_DB_USER=laravel
+ENV APP_DB_PASS=laravel
+ENV PHP_FPM_PORT=9001
+
+########## APP CONFIG ###########
+###########REPO LINK START#############
+
+ENV REPO_LINK=https://github.com/Team-Cloudboost/glue-with-composer-preinstalled.git
+ENV REPO_BRANCH=main
+ENV REPO_PROJECT_FOLDER=.
+
+###########REPO LINK END#############
+
+
+
+
+
+
+
+
+ENV TZ=Asia/Dhaka \
+    DEBIAN_FRONTEND=noninteractive
+
+
+COPY ./Entrypoint/backend-1-docker-entrypoint.sh /backend-1-docker-entrypoint.sh
+
+WORKDIR /public_html
+
+RUN apt update && apt install \
+        lsb-release ca-certificates \
+        apt-transport-https software-properties-common \
+        curl mysql-client wget git -y --no-install-recommends; \
+    apt install php8.1 php8.1-bcmath php8.1-xml \
+        php8.1-fpm php8.1-mysql php8.1-zip php8.1-intl \
+        php8.1-ldap php8.1-gd php8.1-cli php8.1-bz2 php8.1-curl \
+        php8.1-mbstring php8.1-pgsql php8.1-opcache php8.1-soap \
+        php8.1-cgi -y --no-install-recommends; \
+    #Configuring PHP FPM
+    sed -i "s,listen = /run.*,listen = $PHP_FPM_PORT,g" /etc/php/8.1/fpm/pool.d/www.conf; \
+    sed -i "s,error_log =.*,;error_log =,g" /etc/php/8.1/fpm/php-fpm.conf; \
+    #Porject Download
+    cd /public_html; \
+    git init; \
+    git remote add origin $REPO_LINK; \
+    git fetch origin; \
+    git checkout origin/$REPO_BRANCH -- $REPO_PROJECT_FOLDER; \
+    rm -rf /var/lib/apt/lists/*;
+    
+    
+
+RUN ["chmod", "+x", "/backend-1-docker-entrypoint.sh"] 
+ENTRYPOINT [ "sh", "/backend-1-docker-entrypoint.sh" ]
+
+EXPOSE $PHP_FPM_PORT
