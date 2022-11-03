@@ -12,15 +12,19 @@ ENV DB_DUMP_FILE_LINK=https://raw.githubusercontent.com/Team-Cloudboost/glue-wit
 
 WORKDIR /glue
 
+COPY ./Entrypoint/database-docker-entrypoint.sh /database-docker-entrypoint.sh
+
 ENV TZ=Asia/Dhaka \
     DEBIAN_FRONTEND=noninteractive
 
 RUN apt update; apt install mysql-server wget ca-certificates -y --no-install-recommends; \
-    sed -i 's,bind-address.*,bind-address = 0.0.0.0,g' /etc/mysql/mysql.conf.d/mysqld.cnf; \
     wget -O ./glue_dump.sql ${DB_DUMP_FILE_LINK}; 
      
-    
+RUN ["chmod", "+x", "/database-docker-entrypoint.sh"]    
 
 CMD [ "mysqld"]
+
+ENTRYPOINT [ "sh", "/database-docker-entrypoint.sh" ]
+
 
 EXPOSE 3306
