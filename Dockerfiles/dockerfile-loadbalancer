@@ -10,5 +10,5 @@ RUN apk add nginx; \
 
 RUN ["chmod", "+x", "/loadbalancer-docker-entrypoint.sh"]
 
-ENTRYPOINT [ "/loadbalancer-docker-entrypoint.sh" ]
+ENTRYPOINT [ "sh", "/loadbalancer-docker-entrypoint.sh" ]
 
