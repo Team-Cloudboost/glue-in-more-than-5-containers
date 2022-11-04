@@ -1,12 +1,12 @@
-FROM alpine
+FROM ubuntu
 
 
-COPY ./config/nginx/load_balancer.conf /etc/nginx/http.d/default.conf
+COPY ./config/nginx/load_balancer.conf /etc/nginx/sites-available/default
 COPY ./Entrypoint/loadbalancer-docker-entrypoint.sh /loadbalancer-docker-entrypoint.sh
 
 ## For reserving Purpose
-RUN apk add nginx; \
-    cp /etc/nginx/http.d/default.conf /default.conf.bak;
+RUN apt update; apt install nginx -y; \
+    cp /etc/nginx/sites-available/default /default.conf.bak;
 
 RUN ["chmod", "+x", "/loadbalancer-docker-entrypoint.sh"]
 
