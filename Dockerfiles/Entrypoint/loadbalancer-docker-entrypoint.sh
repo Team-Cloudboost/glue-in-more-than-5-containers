@@ -1,5 +1,5 @@
 #!/bin/bash
-IF [[ "$RUN_SH == 0"]]; then
+if [[ "$RUN_SH == 0"]]; then
 
 # copy fresh config from backup location
 
