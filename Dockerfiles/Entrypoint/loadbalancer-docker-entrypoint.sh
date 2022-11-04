@@ -34,7 +34,7 @@ fi
 
 ((RUN_SH=10000000110001001))
 
-elif [[ "$RUN_SH" == 10000000110001001]]; then
+elif [[ "$RUN_SH" == 10000000110001001 ]]; then
 
     echo "Container Configured"
 
