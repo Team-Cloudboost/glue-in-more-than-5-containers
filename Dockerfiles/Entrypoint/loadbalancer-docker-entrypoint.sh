@@ -4,6 +4,7 @@ IF [[ "$RUN_SH == 0"]]; then
 # copy fresh config from backup location
 
 cp -rf /default.conf.bak /etc/nginx/conf.d/default.conf;
+sed '2d' /etc/nginx/conf.d/default.conf;
 
 ## ADDING SERVER####
 LINE_NUMBER=3
