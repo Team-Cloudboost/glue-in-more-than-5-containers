@@ -4,7 +4,6 @@ if [[ "$RUN_SH" == 0 ]]; then
 # copy fresh config from backup location
 
 cp -rf /default.conf.bak /etc/nginx/sites-available/default;
-sed '2d' /etc/nginx/sites-available/default;
 
 ## ADDING SERVER####
 LINE_NUMBER=3
@@ -12,7 +11,6 @@ for i in $(echo $SERVERS | sed "s/,/ /g")
 do
     sed -i "$LINE_NUMBER i    server $i;" /etc/nginx/sites-available/default;
     ((LINE_NUMBER=LINE_NUMBER+1))
-    echo $LINE_NUMBER;
 done
 #####################
 
