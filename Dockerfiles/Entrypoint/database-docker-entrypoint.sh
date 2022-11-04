@@ -12,26 +12,16 @@ mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "GRANT ALL ON $APP_DB.* TO '${MYSQL_USE
 
 TABLE=verify_users
 SQL_EXISTS=$(printf 'SHOW TABLES LIKE "%s"' "$TABLE")
-SQL_IS_EMPTY=$(printf 'SELECT 1 FROM %s LIMIT 1' "$TABLE")
-
 echo "Checking if table <$TABLE> exists ..."
 
 # Check if table exists
 if [[ $(mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "$SQL_EXISTS" $APP_DB) ]]
 then
-    echo "Table exists ..."
-
-    # Check if table has records
-    if [[ $(mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "$SQL_IS_EMPTY" $APP_DB) ]]
-    then
-        echo "Database Not empty"
-    else
-        echo "Table is empty, Importing Started. Please wait ....."
-        mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} $APP_DB < /glue/glue_dump.sql; 
-        echo "Database Import Completed"
-    fi
+    echo "Database Already Imported";
 else
-    echo "Table not exists ..."
+        echo "Table is empty, Importing Started. Please wait .....";
+        mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} $APP_DB < /glue/glue_dump.sql; 
+        echo "Database Import Completed";
 fi
 
 tail -f /dev/null
