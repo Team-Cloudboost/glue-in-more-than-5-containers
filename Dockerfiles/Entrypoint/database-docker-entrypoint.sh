@@ -3,10 +3,10 @@ sed -i 's,bind-address.*,bind-address = 0.0.0.0,g' /etc/mysql/mysql.conf.d/mysql
 sed -i "s,# port.*,port = $DB_PORT,g" /etc/mysql/mysql.conf.d/mysqld.cnf;
 # Port Changing script should be added
 /etc/init.d/mysql start;
-mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY '${MYSQL_ROOT_PASSWORD}';" > /dev/null1
-mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE DATABASE  IF NOT EXISTS $APP_DB;"; > /dev/null1
-mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"; > /dev/null1
-mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "GRANT ALL ON $APP_DB.* TO '${MYSQL_USER}'@'%';"; > /dev/null1
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY '${MYSQL_ROOT_PASSWORD}';"
+mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE DATABASE  IF NOT EXISTS $APP_DB;"; 
+mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"; 
+mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "GRANT ALL ON $APP_DB.* TO '${MYSQL_USER}'@'%';";
 
 
 ## DATABASE CHECKING BEFORE IMPORT

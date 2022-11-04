@@ -1,0 +1,8 @@
+FROM nginx:alpine
+
+
+COPY ./config/nginx/load_balancer.conf /etc/nginx/conf.d/default.conf
+
+## For reserving Purpose
+RUN cp /etc/nginx/conf.d/default.conf /default.conf.bak
+
