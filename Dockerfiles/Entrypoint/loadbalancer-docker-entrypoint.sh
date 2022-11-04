@@ -1,16 +1,16 @@
 #!/bin/bash
-if [[ "$RUN_SH" == 0]]; then
+if [[ "$RUN_SH" == 0 ]]; then
 
 # copy fresh config from backup location
 
-cp -rf /default.conf.bak /etc/nginx/conf.d/default.conf;
-sed '2d' /etc/nginx/conf.d/default.conf;
+cp -rf /default.conf.bak /etc/nginx/http.d/default.conf;
+sed '2d' /etc/nginx/http.d/default.conf;
 
 ## ADDING SERVER####
 LINE_NUMBER=3
 for i in $(echo $SERVERS | sed "s/,/ /g")
 do
-    sed -i "$LINE_NUMBER i    server $i;" /etc/nginx/conf.d/default.conf;
+    sed -i "$LINE_NUMBER i    server $i;" /etc/nginx/http.d/default.conf;
     ((LINE_NUMBER=LINE_NUMBER+1))
     echo $LINE_NUMBER;
 done
@@ -21,10 +21,10 @@ done
 
 if [[ "$IP_HASH" == 0 ]]; then
 
-        sed -i "s/ip_hash.*/#ip_hash;/g" /etc/nginx/conf.d/default.conf;
+        sed -i "s/ip_hash.*/#ip_hash;/g" /etc/nginx/http.d/default.conf;
 
 elif [[ "$IP_HASH" == 1 ]]; then
-        sed -i "2 i    ip_hash;" /etc/nginx/conf.d/default.conf;
+        sed -i "2 i    ip_hash;" /etc/nginx/http.d/default.conf;
 else
 
         echo 'Invalid Parameter'
