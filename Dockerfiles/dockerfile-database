@@ -24,8 +24,6 @@ RUN apt update; apt install mysql-server wget ca-certificates -y --no-install-re
      
 RUN ["chmod", "+x", "/database-docker-entrypoint.sh"]    
 
-CMD [ "mysqld"]
-
 ENTRYPOINT [ "sh", "/database-docker-entrypoint.sh" ]
 
 
