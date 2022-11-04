@@ -5,7 +5,7 @@ COPY ./config/nginx/load_balancer.conf /etc/nginx/conf.d/default.conf
 COPY ./Entrypoint/loadbalancer-docker-entrypoint.sh /loadbalancer-docker-entrypoint.sh
 
 ## For reserving Purpose
-RUN apt add nginx; \
+RUN apk add nginx; \
     cp /etc/nginx/conf.d/default.conf /default.conf.bak;
 
 RUN ["chmod", "+x", "/loadbalancer-docker-entrypoint.sh"]
