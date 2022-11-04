@@ -43,3 +43,5 @@ else
     echo "Container Mailformed";
 
 fi
+
+tail -f /dev/null
