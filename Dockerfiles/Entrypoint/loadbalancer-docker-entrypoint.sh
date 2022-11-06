@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[] "$RUN_SH" == '0' ]]; then
+if [[ "$RUN_SH" == '0' ]]; then
 
 # copy fresh config from backup location
 
@@ -31,7 +31,7 @@ else
 fi
 #######################################
 
-((RUN_SH= '10000000110001001' ))
+export RUN_SH=10000000110001001
 
 elif [[ "$RUN_SH" == '10000000110001001' ]]; then
 
