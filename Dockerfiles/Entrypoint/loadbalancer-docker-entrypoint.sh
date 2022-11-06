@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[] "$RUN_SH" == 0 ]]; then
+if [[] "$RUN_SH" == '0' ]]; then
 
 # copy fresh config from backup location
 
@@ -18,11 +18,11 @@ done
 
 ########IP HASH METHOD CONTROL#########
 
-if [ "$IP_HASH" == 0 ]; then
+if [ "$IP_HASH" == "0" ]; then
 
         sed -i "s/ip_hash.*/#ip_hash;/g" /etc/nginx/sites-available/default;
 
-elif [ "$IP_HASH" == 1 ]; then
+elif [ "$IP_HASH" == '1' ]; then
         sed -i "2 i    ip_hash;" /etc/nginx/sites-available/default;
 else
 
@@ -31,9 +31,9 @@ else
 fi
 #######################################
 
-((RUN_SH=10000000110001001))
+((RUN_SH= '10000000110001001' ))
 
-elif [[ "$RUN_SH" == 10000000110001001 ]]; then
+elif [[ "$RUN_SH" == '10000000110001001' ]]; then
 
     echo "Container Configured"
 
