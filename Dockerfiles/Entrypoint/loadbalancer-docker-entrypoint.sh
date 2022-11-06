@@ -1,5 +1,5 @@
 #!/bin/bash
-if ! [[ -f /run/configured ]]; then
+if ! [ -f /run/configured ]; then
 
 # copy fresh config from backup location
 
@@ -33,7 +33,7 @@ fi
 
 touch /run/configured;
 
-elif [[ -f /run/configured ]]; then
+elif [ -f /run/configured ]; then
 
     echo "Container Configured"
 
