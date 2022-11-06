@@ -18,11 +18,11 @@ done
 
 ########IP HASH METHOD CONTROL#########
 
-if [ "$IP_HASH" == "0" ]; then
+if [ "$IP_HASH" = 0 ]; then
 
         sed -i "s/ip_hash.*/#ip_hash;/g" /etc/nginx/sites-available/default;
 
-elif [ "$IP_HASH" == '1' ]; then
+elif [ "$IP_HASH" = 1 ]; then
         sed -i "2 i    ip_hash;" /etc/nginx/sites-available/default;
 else
 
