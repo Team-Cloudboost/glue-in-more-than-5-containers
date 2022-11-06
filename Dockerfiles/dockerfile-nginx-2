@@ -29,7 +29,6 @@ COPY ./Entrypoint/frontend-2-docker-entrypoint.sh /frontend-2-docker-entrypoint.
 WORKDIR /public_html
 
 RUN apk add git; \
-    mkdir /public_html; \
     cd /public_html; \
     # Git Job start here
     git init; \
