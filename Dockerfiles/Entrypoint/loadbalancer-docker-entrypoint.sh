@@ -1,5 +1,5 @@
 #!/bin/bash
-if ! [[ -f /run/configured ]]; ; then
+if ! [[ -f /run/configured ]]; then
 
 # copy fresh config from backup location
 
