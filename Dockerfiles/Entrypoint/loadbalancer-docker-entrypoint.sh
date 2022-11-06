@@ -1,9 +1,10 @@
 #!/bin/bash
-if [ "$RUN_SH" == 0 ]; then
+if [[] "$RUN_SH" == 0 ]]; then
 
 # copy fresh config from backup location
 
 cp -rf /default.conf.bak /etc/nginx/sites-available/default;
+
 
 ## ADDING SERVER####
 LINE_NUMBER=3
@@ -32,7 +33,7 @@ fi
 
 ((RUN_SH=10000000110001001))
 
-elif [ "$RUN_SH" == 10000000110001001 ]; then
+elif [[ "$RUN_SH" == 10000000110001001 ]]; then
 
     echo "Container Configured"
 
