@@ -2,8 +2,8 @@
 if ! [ -f /run/configured ]; then
 
 # copy fresh config from backup location
-
-cp -rf /default.conf.bak /etc/nginx/sites-available/default;
+rm -rf /etc/nginx/sites-enabled/default;
+cp -rf /default.conf.bak /etc/nginx/sites-enabled/default;
 
 
 ## ADDING SERVER####
