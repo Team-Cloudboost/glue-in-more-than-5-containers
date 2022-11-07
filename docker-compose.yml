@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     image: teamcloudboost/glue-with-loadbalancer:loadbalancer
-    container_name: glue-frontend
+    container_name: glue-loadbalancer
     restart: unless-stopped
     working_dir: /public_html
     ports:
@@ -18,7 +18,7 @@ services:
     env_file:
       - .env
     image: teamcloudboost/glue-with-loadbalancer:server-1
-    container_name: glue-backend
+    container_name: glue-webserver-1
     restart: unless-stopped
     working_dir: /public_html
     ports:
@@ -29,7 +29,7 @@ services:
     env_file:
       - .env
     image: teamcloudboost/glue-with-loadbalancer:server-2
-    container_name: glue-backend
+    container_name: glue-webserver-2
     restart: unless-stopped
     working_dir: /public_html
     ports:
@@ -40,7 +40,7 @@ services:
     env_file:
       - .env
     image: teamcloudboost/glue-with-loadbalancer:php-1
-    container_name: glue-backend
+    container_name: glue-backend-1
     restart: unless-stopped
     ports:
       - ${PHP_FPM_1_PORT}:${PHP_FPM_1_PORT}
@@ -50,7 +50,7 @@ services:
     env_file:
       - .env
     image: teamcloudboost/glue-with-loadbalancer:php-2
-    container_name: glue-backend
+    container_name: glue-backend-2
     restart: unless-stopped
     ports:
       - ${PHP_FPM_2_PORT}:${PHP_FPM_2_PORT}
