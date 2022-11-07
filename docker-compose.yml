@@ -66,13 +66,12 @@ services:
     restart: unless-stopped
     ports:
       - ${PHP_FPM_2_PORT}:${PHP_FPM_2_PORT}
-
 # Database Tier start Here
- db:
-   env_file:
-     - .env
-   image: teamcloudboost/glue-with-loadbalancer:database
-   container_name: glue-database
-   restart: unless-stopped
-   ports:
-     - ${APP_DB_PORT}:${APP_DB_PORT}
+  db:
+    env_file:
+      - .env
+    image: teamcloudboost/glue-with-loadbalancer:database
+    container_name: glue-database
+    restart: unless-stopped
+    ports:
+      - ${APP_DB_PORT}:${APP_DB_PORT}
