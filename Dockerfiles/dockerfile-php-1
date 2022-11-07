@@ -3,7 +3,8 @@ FROM ubuntu
 ########## APP CONFIG ###########
 
 ENV WEB_ADDRESS=localhost
-ENV DB_HOST=localhost
+ENV APP_DB_HOST=localhost
+ENV APP_DB_PORT=3306
 ENV APP_DB=laravel
 ENV APP_DB_USER=laravel
 ENV APP_DB_PASS=laravel

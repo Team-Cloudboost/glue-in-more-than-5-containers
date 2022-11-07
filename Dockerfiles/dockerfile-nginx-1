@@ -4,6 +4,8 @@ FROM nginx:alpine
 
 ENV SERVER_NAME=localhost
 ENV SERVER_PORT=80
+ENV APP_DB_HOST=localhost
+ENV APP_DB_PORT=3306
 ENV APP_DB=laravel
 ENV APP_DB_USER=laravel
 ENV APP_DB_PASS=laravel
