@@ -6,10 +6,6 @@ services:
   load_balancer:
     env_file:
       - .env
-    depends_on:
-      - db
-      - server-1
-      - server-2
     image: teamcloudboost/glue-with-loadbalancer:loadbalancer
     container_name: glue-frontend
     restart: unless-stopped
@@ -21,8 +17,6 @@ services:
   server-1:
     env_file:
       - .env
-    depends_on:
-      - php-1
     image: teamcloudboost/glue-with-loadbalancer:server-1
     container_name: glue-backend
     restart: unless-stopped
@@ -34,8 +28,6 @@ services:
   server-2:
     env_file:
       - .env
-    depends_on:
-      - php-1
     image: teamcloudboost/glue-with-loadbalancer:server-2
     container_name: glue-backend
     restart: unless-stopped
@@ -47,8 +39,6 @@ services:
   php-1:
     env_file:
       - .env
-    depends_on:
-      - php-1
     image: teamcloudboost/glue-with-loadbalancer:php-1
     container_name: glue-backend
     restart: unless-stopped
@@ -59,8 +49,6 @@ services:
   php-2:
     env_file:
       - .env
-    depends_on:
-      - php-1
     image: teamcloudboost/glue-with-loadbalancer:php-2
     container_name: glue-backend
     restart: unless-stopped
