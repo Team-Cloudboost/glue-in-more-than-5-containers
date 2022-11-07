@@ -1,6 +1,6 @@
 #!/bin/bash
 sed -i 's,bind-address.*,bind-address = 0.0.0.0,g' /etc/mysql/mysql.conf.d/mysqld.cnf;
-sed -i "s,# port.*,port = $DB_PORT,g" /etc/mysql/mysql.conf.d/mysqld.cnf;
+sed -i "s,# port.*,port = $APP_DB_PORT,g" /etc/mysql/mysql.conf.d/mysqld.cnf;
 # Port Changing script should be added
 /etc/init.d/mysql start;
 mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY '${MYSQL_ROOT_PASSWORD}';"

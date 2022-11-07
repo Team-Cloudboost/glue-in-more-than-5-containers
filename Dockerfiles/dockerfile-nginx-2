@@ -2,17 +2,15 @@ FROM nginx:alpine
 
 ########## APP CONFIG ###########
 
-ENV SERVER_NAME=10,8.215.16
-ENV SERVER_PORT=80
+ENV SERVER_2_NAME=10,8.215.16
+ENV SERVER_2_PORT=80
 ENV APP_DB_HOST=localhost
 ENV APP_DB_PORT=3306
 ENV APP_DB=laravel
 ENV APP_DB_USER=laravel
 ENV APP_DB_PASS=laravel
-ENV DB_HOST=localhost
-ENV BACK_HOST=localhost
-ENV BACK_HOST_PORT=9002
-
+ENV PHP_FPM-2_HOST=localhost
+ENV PHP_FPM-2_PORT=9002
 ########## APP CONFIG ###########
 ###########REPO LINK#############
 

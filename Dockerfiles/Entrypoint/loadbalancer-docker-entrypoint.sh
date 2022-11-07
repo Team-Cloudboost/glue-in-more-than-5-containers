@@ -8,7 +8,7 @@ cp -rf /default.conf.bak /etc/nginx/sites-enabled/default;
 
 ## ADDING SERVER####
 LINE_NUMBER=3
-for i in $(echo $SERVERS | sed "s/,/ /g")
+for i in $(echo $WEB_SERVERS | sed "s/,/ /g")
 do
     sed -i "$LINE_NUMBER i    server $i;" /etc/nginx/sites-available/default;
     ((LINE_NUMBER=LINE_NUMBER+1))

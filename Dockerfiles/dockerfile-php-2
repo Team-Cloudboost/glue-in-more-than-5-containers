@@ -3,12 +3,12 @@ FROM ubuntu
 ########## APP CONFIG ###########
 
 ENV WEB_ADDRESS=localhost
-ENV DB_HOST=10.8.215.16
 ENV APP_DB_HOST=localhost
 ENV APP_DB_PORT=3306
+ENV APP_DB=laravel
 ENV APP_DB_USER=laravel
 ENV APP_DB_PASS=laravel
-ENV PHP_FPM_PORT=9002
+ENV PHP_FPM_2_PORT=9002
 
 ########## APP CONFIG ###########
 ###########REPO LINK START#############
@@ -44,7 +44,7 @@ RUN apt update && apt install \
         php8.1-mbstring php8.1-pgsql php8.1-opcache php8.1-soap \
         php8.1-cgi -y --no-install-recommends; \
     #Configuring PHP FPM
-    sed -i "s,listen = /run.*,listen = $PHP_FPM_PORT,g" /etc/php/8.1/fpm/pool.d/www.conf; \
+    sed -i "s,listen = /run.*,listen = $PHP_FPM_2_PORT,g" /etc/php/8.1/fpm/pool.d/www.conf; \
     sed -i "s,error_log =.*,;error_log =,g" /etc/php/8.1/fpm/php-fpm.conf; \
     #Porject Download
     cd /public_html; \
@@ -59,4 +59,4 @@ RUN apt update && apt install \
 RUN ["chmod", "+x", "/backend-2-docker-entrypoint.sh"] 
 ENTRYPOINT [ "sh", "/backend-2-docker-entrypoint.sh" ]
 
-EXPOSE $PHP_FPM_PORT
+EXPOSE $PHP_FPM_2_PORT
