@@ -46,7 +46,7 @@ RUN ["chmod", "+x", "/frontend-1-docker-entrypoint.sh"]
 
 ENTRYPOINT [ "sh", "/frontend-1-docker-entrypoint.sh" ]
 
-EXPOSE $SERVER_PORT
+EXPOSE $SERVER_1_PORT
 
 
 
