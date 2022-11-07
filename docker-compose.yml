@@ -1,0 +1,89 @@
+version: '3.3'
+
+# Container for Web Handler
+
+services:
+  load_balancer:
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - server-1
+      - server-2
+    image: teamcloudboost/glue-with-loadbalancer:loadbalancer
+    container_name: glue-frontend
+    restart: unless-stopped
+    working_dir: /public_html
+    ports:
+      - 80:80
+
+# Backend tier start here
+  server-1:
+    env_file:
+      - .env
+    depends_on:
+      - php-1
+    image: teamcloudboost/glue-with-loadbalancer:server-1
+    container_name: glue-backend
+    restart: unless-stopped
+    working_dir: /public_html
+    ports:
+      - ${SERVER_1_PORT}:${SERVER_1_PORT}
+
+# Backend tier start here
+  server-2:
+    env_file:
+      - .env
+    depends_on:
+      - php-1
+    image: teamcloudboost/glue-with-loadbalancer:server-2
+    container_name: glue-backend
+    restart: unless-stopped
+    working_dir: /public_html
+    ports:
+      - ${SERVER_2_PORT}:${SERVER_2_PORT}
+
+# Backend tier start here
+  php-1:
+    env_file:
+      - .env
+    depends_on:
+      - php-1
+    image: teamcloudboost/glue-with-loadbalancer:php-1
+    container_name: glue-backend
+    restart: unless-stopped
+    ports:
+      - ${PHP_FPM_1_PORT}:${PHP_FPM_1_PORT}
+
+# Backend tier start here
+  php-2:
+    env_file:
+      - .env
+    depends_on:
+      - php-1
+    image: teamcloudboost/glue-with-loadbalancer:php-2
+    container_name: glue-backend
+    restart: unless-stopped
+    ports:
+      - ${PHP_FPM_2_PORT}:${PHP_FPM_2_PORT}
+
+php-2:
+    env_file:
+      - .env
+    depends_on:
+      - db
+    image: teamcloudboost/glue-with-loadbalancer:php-1
+    container_name: glue-backend
+    restart: unless-stopped
+    ports:
+      - ${PHP_FPM_2_PORT}:${PHP_FPM_2_PORT}
+
+# Database Tier start Here
+db:
+   env_file:
+     - .env
+   image: teamcloudboost/glue-with-loadbalancer:database
+   container_name: glue-database
+   restart: unless-stopped
+   ports:
+     - ${APP_DB_PORT}:${APP_DB_PORT}
