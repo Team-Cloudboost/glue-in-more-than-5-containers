@@ -2,7 +2,7 @@ FROM nginx:alpine
 
 ########## APP CONFIG ###########
 
-ENV SERVER_2_NAME=10,8.215.16
+ENV SERVER_2_NAME=localhost
 ENV SERVER_2_PORT=80
 ENV APP_DB_HOST=localhost
 ENV APP_DB_PORT=3306
