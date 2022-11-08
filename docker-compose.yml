@@ -8,7 +8,7 @@ services:
       - .env
     build:
       context: ./Dockerfiles
-      Dockerfiles: dockerfile-loadbalancer
+      dockerfiles: dockerfile-loadbalancer
     image: teamcloudboost/glue-with-loadbalancer:loadbalancer
     container_name: glue-loadbalancer
     restart: unless-stopped
@@ -22,7 +22,7 @@ services:
       - .env
     build:
       context: ./Dockerfiles
-      Dockerfiles: dockerfile-nginx-1
+      dockerfiles: dockerfile-nginx-1
     image: teamcloudboost/glue-with-loadbalancer:server-1
     container_name: glue-webserver-1
     restart: unless-stopped
@@ -36,7 +36,7 @@ services:
       - .env
     build:
       context: ./Dockerfiles
-      Dockerfiles: dockerfile-nginx-2
+      dockerfiles: dockerfile-nginx-2
     image: teamcloudboost/glue-with-loadbalancer:server-2
     container_name: glue-webserver-2
     restart: unless-stopped
@@ -50,7 +50,7 @@ services:
       - .env
     build:
       context: ./Dockerfiles
-      Dockerfiles: dockerfile-php-1
+      dockerfiles: dockerfile-php-1
     image: teamcloudboost/glue-with-loadbalancer:php-1
     container_name: glue-backend-1
     restart: unless-stopped
@@ -63,7 +63,7 @@ services:
       - .env
     build:
       context: ./Dockerfiles
-      Dockerfiles: dockerfile-php-2
+      dockerfiles: dockerfile-php-2
     image: teamcloudboost/glue-with-loadbalancer:php-2
     container_name: glue-backend-2
     restart: unless-stopped
@@ -75,7 +75,7 @@ services:
       - .env
     build:
       context: ./Dockerfiles
-      Dockerfiles: dockerfile-database
+      dockerfiles: dockerfile-database
     image: teamcloudboost/glue-with-loadbalancer:database
     container_name: glue-database
     restart: unless-stopped
