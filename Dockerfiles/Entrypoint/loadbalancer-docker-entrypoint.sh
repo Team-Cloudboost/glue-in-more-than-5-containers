@@ -10,7 +10,7 @@ cp -rf /default.conf.bak /etc/nginx/sites-enabled/default;
 LINE_NUMBER=3
 for i in $(echo $WEB_SERVERS | sed "s/,/ /g")
 do
-    sed -i "$LINE_NUMBER i    server $i;" /etc/nginx/sites-available/default;
+    sed -i "$LINE_NUMBER i    server $i;" /etc/nginx/sites-enabled/default;
     ((LINE_NUMBER=LINE_NUMBER+1))
 done
 #####################
@@ -20,10 +20,10 @@ done
 
 if [ "$IP_HASH" = 0 ]; then
 
-        sed -i "s/ip_hash.*/#ip_hash;/g" /etc/nginx/sites-available/default;
+        sed -i "s/ip_hash.*/#ip_hash;/g" /etc/nginx/sites-enabled/default;
 
 elif [ "$IP_HASH" = 1 ]; then
-        sed -i "2 i    ip_hash;" /etc/nginx/sites-available/default;
+        sed -i "2 i    ip_hash;" /etc/nginx/sites-enabled/default;
 else
 
         echo 'Invalid Parameter'
