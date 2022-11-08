@@ -30,7 +30,7 @@ else
 
 fi
 #######################################
-
+sed -i "s,glue,$SERVER_NAME,g" /etc/nginx/sites-enabled/default;
 touch /run/configured;
 
 elif [ -f /run/configured ]; then
