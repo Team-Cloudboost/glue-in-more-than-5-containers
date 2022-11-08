@@ -1,7 +1,7 @@
 #!/bin/bash
 # Modifying Website parameters
-sed -i "s/listen.*/listen $SERVER_1_PORT;/g" /etc/nginx/conf.d/default.conf;
-sed -i "s/server_name.*/server_name $SERVER_1_NAME;/g" /etc/nginx/conf.d/default.conf;
+sed -i "s,listen.*,listen $SERVER_1_PORT;,g" /etc/nginx/conf.d/default.conf;
+sed -i "s,server_name.*,server_name $SERVER_1_NAME;,g" /etc/nginx/conf.d/default.conf;
 sed -i "s,/public_html.*,/public_html/$REPO_PROJECT_FOLDER/public;,g" /etc/nginx/conf.d/default.conf;
 sed -i "s,fastcgi_pass.*,fastcgi_pass $BACK_HOST:$BACK_HOST_PORT;,g" /etc/nginx/conf.d/default.conf;
 # Modifying .env for project
