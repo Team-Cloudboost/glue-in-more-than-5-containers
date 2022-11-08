@@ -10,4 +10,4 @@ sed -i "s,DB_USERNAME.*,DB_USERNAME=$APP_DB_USER,g" /public_html/$REPO_PROJECT_F
 sed -i "s,DB_PASSWORD.*,DB_PASSWORD=$APP_DB_PASS,g" /public_html/$REPO_PROJECT_FOLDER/.env;
 sed -i "s,DB_HOST.*,DB_HOST=$APP_DB_HOST,g" /public_html/$REPO_PROJECT_FOLDER/.env;
 sed -i "s,DB_PORT.*,DB_PORT=$APP_DB_PORT,g" /public_html/$REPO_PROJECT_FOLDER/.env;
-nginx -g 'daemon off;';
+#nginx -g 'daemon off;';
