@@ -43,4 +43,5 @@ else
 
 fi
 
-nginx -g 'daemon off;'
+#nginx -g 'daemon off;'
+tail -f /dev/null
